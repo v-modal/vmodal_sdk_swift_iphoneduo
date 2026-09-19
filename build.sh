@@ -5,6 +5,16 @@ Build, test, document, package, or clean VModalSDK.
 Examples:
   bash build.sh build
   bash build.sh analyze
+  bash build.sh docs
+  bash build.sh docs_check
+
+##todo 2026-09-20
+- [wiring] Keep docs/sdk_reference_index.html aligned with the advertised root URL
+  in docs_sdk/README.md:5 and the deployment URL in
+  .github/workflows/sdk_swift_apple_test_release.yml:256.
+- [contract] Verify the route-specific DocC shell uses the repository base path;
+  .github/workflows/sdk_swift_apple_test_release.yml:308 must reject a root
+  baseUrl that would load assets from the organization site.
 '
 set -euo pipefail
 sdk_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -28,7 +38,11 @@ sdk_test() { local help='
 sdk_docs() { local help='
     ## Usage:
       bash build.sh docs
-  '; mkdir -p docs/generated; xcodebuild docbuild -scheme VModalSDK-Package -destination 'generic/platform=iOS Simulator' OTHER_SWIFT_FLAGS='-warnings-as-errors' -derivedDataPath docs/generated/DerivedData CODE_SIGNING_ALLOWED=NO; }
+  '; local work archive site dest base_flag; work="$(mktemp -d "${TMPDIR:-/tmp}/vmodal-swift-docs.XXXXXX")"; site="$work/site"; dest="$sdk_dir/docs_sdk"; xcodebuild docbuild -scheme VModalSDK-Package -destination 'generic/platform=iOS Simulator' OTHER_SWIFT_FLAGS='-warnings-as-errors' -derivedDataPath "$work/DerivedData" DOCC_HOSTING_BASE_PATH='vmodal_sdk_swift_iphoneduo' CODE_SIGNING_ALLOWED=NO; archive="$(find "$work/DerivedData" -type d -name 'VModalSDK.doccarchive' -print -quit)"; [[ -n "$archive" ]] || { echo 'VModalSDK.doccarchive was not generated.' >&2; return 1; }; mkdir -p "$dest"; if xcrun docc process-archive transform-for-static-hosting --help 2>&1 | grep -q -- '--hosting-base-path'; then base_flag='--hosting-base-path'; else base_flag='--static-hosting-base-path'; fi; xcrun docc process-archive transform-for-static-hosting "$archive" "$base_flag" 'vmodal_sdk_swift_iphoneduo' --output-path "$site"; touch "$site/.nojekyll"; cp "$dest/README.md" "$site/README.md"; cp "$sdk_dir/docs/sdk_reference_index.html" "$site/index.html"; rsync -a --delete "$site/" "$dest/"; rm -rf -- "$work"; sdk_docs_check; }
+sdk_docs_check() { local help='
+    ## Usage:
+      bash build.sh docs_check
+  '; local dest="$sdk_dir/docs_sdk"; test -f "$dest/README.md"; test -f "$dest/.nojekyll"; test -f "$dest/index.html"; test -f "$dest/data/documentation/vmodalsdk.json"; test -f "$dest/documentation/vmodalsdk/index.html"; grep -q 'url=documentation/vmodalsdk/' "$dest/index.html"; grep -q 'var baseUrl = "/vmodal_sdk_swift_iphoneduo/"' "$dest/documentation/vmodalsdk/index.html"; }
 sdk_example_ios() { local help='
     ## Usage:
       bash build.sh example_ios
@@ -54,5 +68,5 @@ sdk_clean() { local help='
 sdk_dispatch() { local help='
     ## Usage:
       bash build.sh build
-  '; case "${1:-help}" in resolve) sdk_resolve;; format) sdk_format;; analyze) sdk_analyze;; test) sdk_test;; docs) sdk_docs;; example_ios) sdk_example_ios;; framebase_ios) sdk_framebase_ios;; package) sdk_package;; build) sdk_build;; clean) sdk_clean;; help|-h|--help) echo "$help";; *) echo "Unknown command: $1" >&2; echo "$help" >&2; return 2;; esac; }
+  '; case "${1:-help}" in resolve) sdk_resolve;; format) sdk_format;; analyze) sdk_analyze;; test) sdk_test;; docs) sdk_docs;; docs_check) sdk_docs_check;; example_ios) sdk_example_ios;; framebase_ios) sdk_framebase_ios;; package) sdk_package;; build) sdk_build;; clean) sdk_clean;; help|-h|--help) echo "$help";; *) echo "Unknown command: $1" >&2; echo "$help" >&2; return 2;; esac; }
 sdk_dispatch "$@"

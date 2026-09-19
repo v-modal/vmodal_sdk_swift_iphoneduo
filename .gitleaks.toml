@@ -8,5 +8,6 @@ description = "Non-secret deterministic fixtures"
 paths = [
   '''Tests/VModalSDKTests/Fixtures/''',
   '''Sources/VModalSDK/Routes\.generated\.swift''',
+  '''docs_sdk/''',
   '''\.build/'''
 ]

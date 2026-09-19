@@ -36,11 +36,11 @@ sdk_docs_generate() { local help='
 sdk_docs_check() { local help='
     ## Usage:
       bash cli.sh docs_check
-  '; bash build.sh docs; }
+  '; bash build.sh docs_check; }
 sdk_docs_precommit() { local help='
     ## Usage:
       bash cli.sh docs_precommit
-  '; sdk_repo_env; if git diff --cached --name-only -- sdk_swift_apple | grep -Eq '\.(swift|md|json)$'; then sdk_routes_check; git diff --exit-code -- Sources/VModalSDK/Routes.generated.swift docs; fi; }
+  '; sdk_repo_env; if git diff --cached --name-only -- sdk_swift_apple | grep -Eq '\.(swift|md|json)$'; then sdk_routes_check; sdk_docs_generate; git diff --exit-code -- Sources/VModalSDK/Routes.generated.swift docs docs_sdk; fi; }
 sdk_release_check() { local help='
     ## Usage:
       bash cli.sh release_check

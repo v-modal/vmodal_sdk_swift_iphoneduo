@@ -1,6 +1,6 @@
 # Operation Parity Reference
 
-VModalSDK 1.2.4 maps the supported Flutter 1.2.2 operations to typed Swift
+VModalSDK 1.2.5 maps the supported Flutter 1.2.2 operations to typed Swift
 resources. Every async operation accepts an optional ``CancellationToken``.
 
 ## Scoped API

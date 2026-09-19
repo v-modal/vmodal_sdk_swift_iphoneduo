@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.5 — 2026-09-20
+
+- Completed the native Framebase asset set with a production app icon for all
+  supported iPhone, iPad, and App Store slots.
+- Expanded the Framebase guide with its bundled-media gallery, architecture,
+  code tour, asset inventory, validation steps, and troubleshooting.
+
 ## 1.2.4 — 2026-09-19
 
 - Added the native SwiftUI Framebase example for importing, preparing,
