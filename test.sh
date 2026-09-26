@@ -2,7 +2,7 @@
 help='
 Usage: bash test.sh COMMAND [STEP]
 Run offline gates by default; live gates require explicit invocation.
-Examples:
+example:
   bash test.sh test
   bash test.sh regression 4
 '
@@ -23,13 +23,13 @@ sdk_sim() { local help='
 sdk_ios() { local help='
     ## Usage:
       bash test.sh ios
-  '; local device; device="$(bash install.sh device_id)"; bash build.sh example_ios; xcodebuild test -project Examples/StarterIOS/StarterIOS.xcodeproj -scheme StarterIOS -configuration Debug -destination "platform=iOS Simulator,id=$device" CODE_SIGNING_ALLOWED=NO; sdk_framebase_ios "$device"; xcodebuild test -scheme VModalSDK-Package -destination "platform=iOS Simulator,id=$device"; }
+  '; local device; device="$(bash install.sh device_id)"; bash build.sh example_ios; xcodebuild test -project example/StarterIOS/StarterIOS.xcodeproj -scheme StarterIOS -configuration Debug -destination "platform=iOS Simulator,id=$device" CODE_SIGNING_ALLOWED=NO; sdk_framebase_ios "$device"; xcodebuild test -scheme VModalSDK-Package -destination "platform=iOS Simulator,id=$device"; }
 sdk_framebase_ios() { local help='
     ## Usage:
       bash test.sh framebase_ios [DEVICE_UDID]
-  '; local device="${1:-}"; [[ -n "$device" ]] || device="$(bash install.sh device_id)"; bash build.sh framebase_ios; xcodebuild test -project Examples/05_framebase/Framebase.xcodeproj -scheme Framebase -configuration Debug -destination "platform=iOS Simulator,id=$device" -derivedDataPath Examples/05_framebase/DerivedData CODE_SIGNING_ALLOWED=NO; }
+  '; local device="${1:-}"; [[ -n "$device" ]] || device="$(bash install.sh device_id)"; bash build.sh framebase_ios; xcodebuild test -project example/05_framebase/Framebase.xcodeproj -scheme Framebase -configuration Debug -destination "platform=iOS Simulator,id=$device" -derivedDataPath example/05_framebase/DerivedData CODE_SIGNING_ALLOWED=NO; }
 # FUTURE_IPHONE_DUO_XCODE_27_1: restore the exact Duo acceptance commands later.
-# sdk_duo() { bash build.sh duo_example; xcodebuild test -project Examples/StarterIOS/StarterIOS.xcodeproj -scheme StarterIOS -configuration Debug -destination 'platform=iOS Simulator,name=iPhone Duo' CODE_SIGNING_ALLOWED=NO; xcodebuild test -scheme VModalSDK-Package -destination 'platform=iOS Simulator,name=iPhone Duo'; }
+# sdk_duo() { bash build.sh duo_example; xcodebuild test -project example/StarterIOS/StarterIOS.xcodeproj -scheme StarterIOS -configuration Debug -destination 'platform=iOS Simulator,name=iPhone Duo' CODE_SIGNING_ALLOWED=NO; xcodebuild test -scheme VModalSDK-Package -destination 'platform=iOS Simulator,name=iPhone Duo'; }
 sdk_security() { local help='
     ## Usage:
       bash test.sh security

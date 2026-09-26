@@ -5,7 +5,7 @@ import VModalSDK
 let roots = [
     "Package.swift", ".xcode-version", ".swift-version", ".swift-format", ".gitignore", ".gitleaks.toml",
     "00_specs.md", "README.md", "CHANGELOG.md", "LICENSE", "install.sh", "build.sh", "run.sh", "test.sh",
-    "cli.sh", "env.sh", "security_check.sh", "Sources", "Tests", "Examples", "Tools", "docs", "release",
+    "cli.sh", "env.sh", "security_check.sh", "Sources", "Tests", "example", "Tools", "docs", "release",
 ]
 let excluded = [".build", "DerivedData", "ztmp", ".swiftpm", "xcuserdata"]
 

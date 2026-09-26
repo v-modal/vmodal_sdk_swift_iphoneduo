@@ -20,7 +20,7 @@ simulator UDID and must not substitute another device.
 | Cancel upload/search | Only the selected operation is canceled; a later request succeeds |
 | Dynamic Type and VoiceOver | Labels remain readable and actionable controls have accessible names |
 
-Automation builds and launches `Examples/StarterIOS`. Network continuity and
+Automation builds and launches `example/StarterIOS`. Network continuity and
 request-count assertions use injected transports in `DuoCompatibilityTests`;
 the simulator pass covers geometry, scene lifecycle, and interaction.
 -->

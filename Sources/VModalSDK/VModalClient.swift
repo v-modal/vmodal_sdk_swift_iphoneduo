@@ -1,6 +1,6 @@
 import Foundation
 
-public let vmodalSDKVersion = "1.2.5"
+public let vmodalSDKVersion = "1.2.6"
 
 public final class VModalClient: Sendable {
     public let config: SDKConfig

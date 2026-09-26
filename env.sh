@@ -2,7 +2,7 @@
 help='
 Usage: source env.sh && sdk_env_live
 Derive Swift SDK aliases from existing repository variables without storing values.
-Examples:
+example:
   source env.sh && sdk_env_live
   bash env.sh release
 '

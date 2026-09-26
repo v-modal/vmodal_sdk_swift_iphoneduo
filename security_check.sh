@@ -2,7 +2,7 @@
 help='
 Usage: bash security_check.sh COMMAND
 Check workflow, toolchain, version, license, routes, package, secrets, and forbidden operations.
-Examples:
+example:
   bash security_check.sh all
   bash security_check.sh routes
 '

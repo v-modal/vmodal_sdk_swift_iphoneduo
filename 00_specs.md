@@ -169,7 +169,7 @@ sdk_swift_apple/
 │   ├── Fixtures/routes_contract.json
 │   ├── Fakes.swift
 │   └── ... parity test files
-├── Examples/StarterIOS/
+├── example/StarterIOS/
 ├── Tools/
 │   ├── RouteSync/
 │   ├── ReleaseManifest/
@@ -349,7 +349,7 @@ refresh, and persistence. The SDK owns only safe in-memory consumption.
 not contain `__`. The encoded `projectID__collectionName` must also be at most
 80 characters.
 
-Examples:
+example:
 
 ```text
 food_app + global + catalog     -> food_app__global / catalog

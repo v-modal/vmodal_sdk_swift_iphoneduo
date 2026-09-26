@@ -18,8 +18,8 @@
 |---|---|---|
 | 💬 | **Discord support** | [Join the V-Modal AI Discord](https://discord.gg/XGxgBQqkaY) |
 | 📚 | **SDK documentation** | [Read the Swift package reference](https://v-modal.github.io/vmodal_sdk_swift_iphoneduo/documentation/vmodalsdk/) |
-| 📱 | **Starter app and community** | [Open the StarterIOS example](Examples/StarterIOS) or [visit r/v_modal](https://www.reddit.com/r/v_modal/) |
-| 🎞️ | **Framebase product example** | [Browse, prepare, search, and play a local street-video archive](Examples/05_framebase) |
+| 📱 | **Starter app and community** | [Open the StarterIOS example](example/StarterIOS) or [visit r/v_modal](https://www.reddit.com/r/v_modal/) |
+| 🎞️ | **Framebase product example** | [Browse, prepare, search, and play a local street-video archive](example/05_framebase) |
 | 🔑 | **Get an API key** | [Request a VModal API key](https://v-modal.com/page/contact.ts) |
 
 <p align="center"><em>Turn every video library into an experience your users can explore.</em></p>
@@ -34,7 +34,7 @@ cancellation.
 | Your Apple experience | VModal gives you |
 |---|---|
 | “Find the cyclist in the red jacket” | Semantic video and image search |
-| Search words spoken or shown on screen | ASR and OCR search sources |
+| Search words spoken or shown on screen | AUDIO and TEXT search sources |
 | Upload from PhotosPicker or a camera workflow | Streamed, signed uploads with live progress |
 | A cancel button that really cancels | Per-operation cancellation tokens |
 | Collection and indexing screens | Typed collection, index, usage, and image resources |
@@ -47,7 +47,7 @@ Copy this prompt into your coding agent:
 ```text
 1. Clone https://github.com/v-modal/vmodal_sdk_swift_iphoneduo.git and enter
    the vmodal_sdk_swift_iphoneduo directory.
-2. Inspect the repository instructions and Examples/StarterIOS/README.md before
+2. Inspect the repository instructions and example/StarterIOS/README.md before
    making changes.
 3. Use the repository's selected Xcode and Swift toolchain; do not install or
    switch Xcode. Run:
@@ -58,7 +58,7 @@ Copy this prompt into your coding agent:
      bash install.sh device_list
    Get the first available iPhone simulator identifier with:
      bash install.sh device_id
-5. Run Examples/StarterIOS on the selected simulator with:
+5. Run example/StarterIOS on the selected simulator with:
      bash run.sh example --device DEVICE_ID
 
 Keep working until the app builds, installs, and opens. Fix any repository
@@ -244,8 +244,8 @@ same SDK contract in your SwiftUI state and lifecycle ownership.
 
 | Developer goal | Apple reference | What to carry into your app |
 |---|---|---|
-| Learn or troubleshoot the SDK | [StarterIOS](Examples/StarterIOS) | Start with configuration, collection discovery, uploads, indexing, and search in one small app. |
-| Build an upload-and-search screen | [StarterIOS app session](Examples/StarterIOS/StarterIOS/AppSession.swift) | Keep one scene-owned session, stream upload progress, and cancel operation tasks explicitly. |
+| Learn or troubleshoot the SDK | [StarterIOS](example/StarterIOS) | Start with configuration, collection discovery, uploads, indexing, and search in one small app. |
+| Build an upload-and-search screen | [StarterIOS app session](example/StarterIOS/StarterIOS/AppSession.swift) | Keep one scene-owned session, stream upload progress, and cancel operation tasks explicitly. |
 | Validate an integration stage by stage | [SDK simulation tool](Tools/SDKSimulation) | Keep authentication, collection discovery, upload, indexing, search, and image rendering as visible stages. |
 | Prepare an adaptive Apple interface | [iPhone Duo guide](docs/iphone_duo.md) | Keep SDK and upload ownership independent of window geometry, scene changes, and split layouts. |
 
@@ -304,7 +304,7 @@ Minimum toolchain: Swift `6.0`, Xcode `26.6`, iOS `16.0`, and macOS `13.0`.
 - [VModal AI](https://www.v-modal.ai)
 - [Read the Swift getting-started guide](Sources/VModalSDK/VModalSDK.docc/GettingStarted.md)
 - [Review complete operation parity](Sources/VModalSDK/VModalSDK.docc/APIReference.md)
-- [Run the StarterIOS app](Examples/StarterIOS)
+- [Run the StarterIOS app](example/StarterIOS)
 - [Review the iPhone Duo and adaptive-layout guide](docs/iphone_duo.md)
 - [Review the API compatibility specification](00_specs.md)
 - [Open an issue](https://github.com/v-modal/vmodal_sdk_swift_iphoneduo/issues)

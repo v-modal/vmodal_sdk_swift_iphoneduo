@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.6 — 2026-09-27
+
+- Default scoped searches to the image index so a fresh collection created
+  with the default index configuration can be searched without an explicit
+  `searchSources` override.
+
 ## 1.2.5 — 2026-09-20
 
 - Completed the native Framebase asset set with a production app icon for all

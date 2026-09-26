@@ -1,6 +1,6 @@
 # ``VModalSDK``
 
-Build concurrency-safe VModal 1.2.5 clients for Apple platforms.
+Build concurrency-safe VModal 1.2.6 clients for Apple platforms.
 
 ## Overview
 

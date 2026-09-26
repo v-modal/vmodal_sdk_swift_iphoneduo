@@ -2,7 +2,7 @@
 help='
 Usage: bash cli.sh COMMAND [DIRECTORY]
 Generate/check routes, DocC, versions, and release manifests.
-Examples:
+example:
   bash cli.sh routes_check
   bash cli.sh release_manifest .
 '

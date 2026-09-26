@@ -2,7 +2,7 @@
 help='
 Usage: bash build.sh COMMAND
 Build, test, document, package, or clean VModalSDK.
-Examples:
+example:
   bash build.sh build
   bash build.sh analyze
   bash build.sh docs
@@ -26,7 +26,7 @@ sdk_resolve() { local help='
 sdk_format() { local help='
     ## Usage:
       bash build.sh format
-  '; local bin; bin="$(xcrun --find swift-format)"; "$bin" lint --recursive Sources Tests Tools Examples; }
+  '; local bin; bin="$(xcrun --find swift-format)"; "$bin" lint --recursive Sources Tests Tools example; }
 sdk_analyze() { local help='
     ## Usage:
       bash build.sh analyze
@@ -34,7 +34,7 @@ sdk_analyze() { local help='
 sdk_test() { local help='
     ## Usage:
       bash build.sh test
-  '; local device; swift test; if [[ -d Examples/StarterIOS/StarterIOSTests ]]; then device="$(bash install.sh device_id)"; xcodebuild test -project Examples/StarterIOS/StarterIOS.xcodeproj -scheme StarterIOS -configuration Debug -destination "platform=iOS Simulator,id=$device" CODE_SIGNING_ALLOWED=NO; fi; }
+  '; local device; swift test; if [[ -d example/StarterIOS/StarterIOSTests ]]; then device="$(bash install.sh device_id)"; xcodebuild test -project example/StarterIOS/StarterIOS.xcodeproj -scheme StarterIOS -configuration Debug -destination "platform=iOS Simulator,id=$device" CODE_SIGNING_ALLOWED=NO; fi; }
 sdk_docs() { local help='
     ## Usage:
       bash build.sh docs
@@ -46,13 +46,13 @@ sdk_docs_check() { local help='
 sdk_example_ios() { local help='
     ## Usage:
       bash build.sh example_ios
-  '; xcodebuild build -project Examples/StarterIOS/StarterIOS.xcodeproj -scheme StarterIOS -destination 'generic/platform=iOS Simulator' -derivedDataPath Examples/StarterIOS/DerivedData CODE_SIGNING_ALLOWED=NO; }
+  '; xcodebuild build -project example/StarterIOS/StarterIOS.xcodeproj -scheme StarterIOS -destination 'generic/platform=iOS Simulator' -derivedDataPath example/StarterIOS/DerivedData CODE_SIGNING_ALLOWED=NO; }
 sdk_framebase_ios() { local help='
     ## Usage:
       bash build.sh framebase_ios
-  '; xcodebuild build -project Examples/05_framebase/Framebase.xcodeproj -scheme Framebase -destination 'generic/platform=iOS Simulator' -derivedDataPath Examples/05_framebase/DerivedData CODE_SIGNING_ALLOWED=NO; }
+  '; xcodebuild build -project example/05_framebase/Framebase.xcodeproj -scheme Framebase -destination 'generic/platform=iOS Simulator' -derivedDataPath example/05_framebase/DerivedData CODE_SIGNING_ALLOWED=NO; }
 # FUTURE_IPHONE_DUO_XCODE_27_1: restore when Xcode 27.1 is available in CI.
-# sdk_duo_example() { local device; device="$(xcrun simctl list devices available | awk '/iPhone Duo/ {gsub(/[()]/,""); print $(NF-1); exit}')"; [[ -n "$device" ]] || return 1; xcodebuild build -project Examples/StarterIOS/StarterIOS.xcodeproj -scheme StarterIOS -destination "platform=iOS Simulator,id=$device" -derivedDataPath Examples/StarterIOS/DerivedData CODE_SIGNING_ALLOWED=NO; }
+# sdk_duo_example() { local device; device="$(xcrun simctl list devices available | awk '/iPhone Duo/ {gsub(/[()]/,""); print $(NF-1); exit}')"; [[ -n "$device" ]] || return 1; xcodebuild build -project example/StarterIOS/StarterIOS.xcodeproj -scheme StarterIOS -destination "platform=iOS Simulator,id=$device" -derivedDataPath example/StarterIOS/DerivedData CODE_SIGNING_ALLOWED=NO; }
 sdk_package() { local help='
     ## Usage:
       bash build.sh package
@@ -64,7 +64,7 @@ sdk_build() { local help='
 sdk_clean() { local help='
     ## Usage:
       bash build.sh clean
-  '; [[ -f Package.swift && "$(pwd)" == *'/sdk_swift_apple' ]] || { echo 'Refusing cleanup outside VModalSDK package.' >&2; return 1; }; grep -q 'name: "VModalSDK"' Package.swift || { echo 'VModalSDK product guard failed.' >&2; return 1; }; rm -rf -- "$sdk_dir/.build" "$sdk_dir/docs/generated" "$sdk_dir/Examples/StarterIOS/DerivedData" "$sdk_dir/Examples/05_framebase/DerivedData"; }
+  '; [[ -f Package.swift && "$(pwd)" == *'/sdk_swift_apple' ]] || { echo 'Refusing cleanup outside VModalSDK package.' >&2; return 1; }; grep -q 'name: "VModalSDK"' Package.swift || { echo 'VModalSDK product guard failed.' >&2; return 1; }; rm -rf -- "$sdk_dir/.build" "$sdk_dir/docs/generated" "$sdk_dir/example/StarterIOS/DerivedData" "$sdk_dir/example/05_framebase/DerivedData"; }
 sdk_dispatch() { local help='
     ## Usage:
       bash build.sh build

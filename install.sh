@@ -2,7 +2,7 @@
 help='
 Usage: bash install.sh COMMAND
 Verify the selected Apple toolchain without installing or switching it.
-Examples:
+example:
   bash install.sh check
   bash install.sh device_list
 '

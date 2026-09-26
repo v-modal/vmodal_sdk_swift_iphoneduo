@@ -1,6 +1,6 @@
 # Street archive — media provenance
 
-All three videos are licensed stock footage from Pexels, not recordings made by the app author. They form one theme: street intersections, pedestrians, buses, and city traffic. No source audio is included, so this app tests visual search only, not ASR or audio search.
+All three videos are licensed stock footage from Pexels, not recordings made by the app author. They form one theme: street intersections, pedestrians, buses, and city traffic. No source audio is included, so this app tests visual search only, not AUDIO or audio search.
 
 | Local video | Author / original | App edit |
 | --- | --- | --- |
